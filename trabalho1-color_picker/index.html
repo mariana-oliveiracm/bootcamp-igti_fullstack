@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Color Picker</title>
+    <style>
+        body{
+            color: whitesmoke;
+            background-color: rgb(31, 31, 31);
+            font-family: sans-serif;
+            padding: 100px;
+        }
+
+        .range{
+            display: flex;
+            flex-direction: column;
+            margin-left:20px;
+        }
+
+        .pickerValues{
+            display: flex;
+            flex-direction: row;
+        }
+
+        #display{
+            background-color: black;
+            width: 150px;
+            height: 150px;
+            margin: 50px;
+        }
+
+        .divColor{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;    
+        }
+
+        #rgbCode{
+            font-weight: bold;
+            text-align: center;
+            border: black solid 1px;
+            padding: 5px        
+        }
+
+        .container{
+            width: 270px;
+        }
+
+        input.colorValue{
+            width: 40px;
+            margin-left: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">    
+        <h1>RGB Color Picker</h1>
+
+        <div class="pickerValues">
+
+            <div class="names">
+                <p>RED:</p>
+                <p>GREEN:</p>
+                <p>BLUE:</p>
+
+            </div>
+            <div class="range">
+                <div class="divColor">
+                    <input type="range" id="red" min="0" max="255"> <input type="text" class="colorValue" id="redValue" disabled>  
+                </div>
+                <div class="divColor">
+                    <input type="range" id="green" min="0" max="255"><input type="text" class="colorValue" id="greenValue" disabled>
+                </div>
+                <div class="divColor">
+                    <input type="range" id="blue" min="0" max="255"><input type="text" class="colorValue" id="blueValue" disabled>
+                </div>
+            </div>
+        </div>
+        <div id="rgbCode">RGB ()</div>
+        <div id="display"></div>
+    </div>
+
+    <script>
+        var range = document.querySelectorAll("input[type='range']");
+
+        for (i = 0; i < range.length; i++){
+            range[i].addEventListener("input", function(){
+                var red = document.getElementById("red").value
+                var green = document.getElementById("green").value
+                var blue = document.getElementById("blue").value
+
+                var color = document.getElementById("display");
+                var border = document.getElementById("rgbCode");
+                color.style.background = "rgb("+ red +", "+ green +", "+ blue +")";
+                border.style.borderColor = "rgb("+ red +", "+ green +", "+ blue +")";
+
+                document.getElementById("redValue").value = red;
+                document.getElementById("greenValue").value = green;
+                document.getElementById("blueValue").value = blue;
+
+                document.getElementById("rgbCode").innerHTML = "RGB: ("+ red +", "+ green +", "+ blue +")";
+            });
+        }
+    </script>
+    
+    
+</body>
+</html>
